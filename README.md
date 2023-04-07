@@ -27,12 +27,12 @@ python train.py -d dataset --N 48 --angRes 13 --n_blocks 1 -e 100 -lr 1e-4 -n 20
 ```
 
 ### stage 2
-Load the last checkpoint of stage 1 or load from the [fixed-rate model](https://github.com/VincentChandelier/SADN/blob/main/Code/checkpoint.pth.tar) and begin to train the final model in stage 2.  
+Load the last checkpoint of stage 1 or load from the [fixed-rate model](https://github.com/VincentChandelier/SADN/blob/main/Code/checkpoint.pth.tar) and begin to train the variabal rate model in stage 2.  
 ```
 python train.py -d dataset --N 48 --angRes 13 --n_blocks 1 -e 100 -lr 1e-4 -n 20  --lambda 3e-3 --batch-size 8  --test-batch-size 8 --aux-learning-rate 1e-3 --patch-size 832 832 --cuda --save --seed 1926 --clip_max_norm 1.0 --gpu-id  2,3 --savepath  ./Noisecheckpoint --stage 2 --ste 0 --loadFromPretrainedSinglemodel 1 --checkpoint checkpoint.pth.tar --pretrained
 ```
 ### stage 3  
-Load the last checkpoint of stage 2 and begin to train the final model in stage 3.
+Load the last checkpoint of stage 2 and begin to train the final variabal rate model in stage 3.
 ```
 python train.py -d dataset --N 48 --angRes 13 --n_blocks 1 -e 100 -lr 1e-6 -n 20  --lambda 3e-3 --batch-size 8  --test-batch-size 32 --aux-learning-rate 1e-3 --patch-size 832 832 --cuda --save --seed 1926 --clip_max_norm 1.0 --gpu-id  2,3 --savepath  ./STEcheckpoint --stage 3 --ste 1 --loadFromPretrainedSinglemodel 0 --checkpoint ./Noisecheckpoint/checkpoint_best_loss_82.pth.tar --pretrained
 ```
